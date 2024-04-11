@@ -30,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
               width: widthMobileSize,
               height: heightMobileSize / 2,
               color: const Color.fromARGB(255, 29, 29, 29),
+              alignment: Alignment.topLeft,
               child: 'صفحه ورود'.textSyleToText(Colors.white, 45),
             ),
             Center(
@@ -45,16 +46,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        Align(
-                            alignment: Alignment.topLeft,
-                            child:
-                                'شماره تلفن'.textSyleToText(Colors.black, 15)),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                              alignment: Alignment.topLeft,
+                              child: 'شماره تلفن'
+                                  .textSyleToText(Colors.black, 15)),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
                             controller: textEditingPhoneController,
-                            keyboardType: TextInputType.emailAddress,
-                            autofocus: true,
+                            keyboardType: TextInputType.phone,
+                            //autofocus: true,
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.phone),
                               labelText: 'Please enter your phone number',
@@ -77,9 +81,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Column(
                       children: <Widget>[
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: 'رمز عبور'.textSyleToText(Colors.black, 15),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: 'رمز عبور'.textSyleToText(Colors.black, 15),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -111,10 +118,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () async {
-                              final supabase = Supabase.instance.client;
-                              await supabase.auth
-                                  .signInWithPassword(password: '123',phone:null);
+                            onPressed: () {
+                              //final supabase = Supabase.instance.client;
+                              // await supabase.auth.signInWithPassword(
+                              //   password: textEditingPasswordController.text,
+                              //   phone: textEditingPhoneController.text,
+                              // );
                               Navigator.pushNamed(context, '/third');
                             },
                             style: const ButtonStyle(
@@ -128,14 +137,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        'اگر حساب کاربری ندارید'.textSyleToText(Colors.black, 20),
+                        'اگر حساب کاربری ندارید'
+                            .textSyleToText(Colors.black, 20),
                         TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/second');
-                          },
-                          child: 'ثبت نام شوید'.textSyleToText(Colors.black, 20)
-                        ),
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/second');
+                            },
+                            child: 'ثبت نام کنید'
+                                .textSyleToText(Colors.green, 20)),
                       ],
                     ),
                   ],
