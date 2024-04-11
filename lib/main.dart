@@ -43,9 +43,9 @@ class MainScreen extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
-        '/second': (context) => RegisterScreen(),
+        '/second': (context) => const RegisterScreen(),
         '/third': (context) => const HomeScreen(),
-        '/fourth': (context) => LoginScreen(),
+        '/fourth': (context) => const LoginScreen(),
       },
     );
   }
