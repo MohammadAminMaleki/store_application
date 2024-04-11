@@ -30,6 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               width: widthMobileSize,
               height: heightMobileSize / 2,
               color: const Color.fromARGB(255, 29, 29, 29),
+              alignment: Alignment.topLeft,
               child: 'صفحه ثبت نام'.textSyleToText(Colors.white, 45),
             ),
             Center(
@@ -45,16 +46,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        Align(
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
                             alignment: Alignment.topLeft,
                             child:
-                                'شماره تلفن'.textSyleToText(Colors.black, 15)),
+                                'شماره تلفن'.textSyleToText(Colors.black, 15),
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
                             controller: textEditingPhoneController,
-                            keyboardType: TextInputType.emailAddress,
-                            autofocus: true,
+                            keyboardType: TextInputType.phone,
+                            //autofocus: true,
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.phone),
                               labelText: 'Please enter your phone number',
@@ -77,9 +82,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     Column(
                       children: <Widget>[
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: 'رمز عبور'.textSyleToText(Colors.black, 15),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: 'رمز عبور'.textSyleToText(Colors.black, 15),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -91,9 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               prefixIcon: const Icon(Icons.lock),
                               suffixIcon: IconButton(
                                 onPressed: () {
-                                  setState(() {
-                                    
-                                  });
+                                  //setState(() {});
                                 },
                                 icon: const Icon(Icons.remove_red_eye),
                               ),
@@ -119,10 +125,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () async {
-                              final supabase = Supabase.instance.client;
-                              await supabase.auth
-                                  .signUp(password: '123', phone: null);
+                            onPressed: () {
+                              //final supabase = Supabase.instance.client;
+                              // await supabase.auth.signUp(
+                              //   password: textEditingPasswordController.text,
+                              //   phone: textEditingPhoneController.text,
+                              // );
                               Navigator.pushNamed(context, '/third');
                             },
                             style: const ButtonStyle(
@@ -136,15 +144,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         'اگر حساب کاربری دارید'
                             .textSyleToText(Colors.black, 20),
                         TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/fourth');
-                            },
-                            child:
-                                'وارد شوید'.textSyleToText(Colors.black, 20)),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/fourth');
+                          },
+                          child: 'وارد شوید'.textSyleToText(Colors.green, 20),
+                        ),
                       ],
                     ),
                   ],
